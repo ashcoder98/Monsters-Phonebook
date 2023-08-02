@@ -10,25 +10,33 @@ class App extends Component {
         };
     }
 
-componentDidMount(){
-    fetch('https://jsonplaceholder.typicode.com/users')
-        .then(response => response.json()).then((users => this.setState(() => {
-            return {monsters: users}
-        },
-        () => {
-            console.log(this.state)
-        }
-        )));
-}
+    componentDidMount() {
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(response => response.json())
+            .then((users => this.setState(() => {
+                return {monsters: users}
+            }, () => {
+                console.log(this.state)
+            })));
+    }
 
     render() {
         return (
             <div className="App">
-                {this
+                <input
+                    className='searchbox'
+                    type='search'
+                    placeholder='search monsters'
+                    onChange={(event) => {
+                    console.log(event.target.value)
+                    let result = this.state.monsters.filter(monster => console.log(monster.name.includes(event.target.value)))
+                }}/> {this
                     .state
                     .monsters
                     .map((monster) => {
-                        return <div key={monster.id}><h1>{monster.name}</h1></div>
+                        return <div key={monster.id}>
+                            <h1>{monster.name}</h1>
+                        </div>
                     })}
             </div>
         );
