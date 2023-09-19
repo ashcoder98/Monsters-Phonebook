@@ -8,7 +8,7 @@ const App = () => {
     const [searchField,setSearchField] = useState('');
     const [monsters, setMonsters] = useState([]);
     const [filteredMonsters, setFilteredMonsters] = useState(monsters);
-    const [stringField, setStringField ] = useState('');
+    
 
    console.log('render')
         useEffect(() => {
@@ -25,7 +25,7 @@ const App = () => {
                     .includes(searchField);
             });
             setFilteredMonsters(newfilteredMonsters)
-            console.log('effect is firing')
+            
         }, [monsters, searchField])
          
          
@@ -39,14 +39,14 @@ const App = () => {
     };
     
 
-    console.log(filteredMonsters)
+    
     return (
         <div className="App">
             <h1 className='app-title'>Contact List</h1>
             <SearchBox
                 className='monsters-search-box'
                 onChangeHandler={onSearchChange}
-                placeholder='search monsters'/>
+                placeholder='search contacts'/>
             <CardList monsters={filteredMonsters}/>
         </div>
     )
